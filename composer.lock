@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d21fb6421988e6f85e2f5020c6531d1b",
+    "content-hash": "49533cb73a5f03d897d0981f5ed4353f",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -170,26 +170,26 @@
         },
         {
             "name": "grupo-cometa/builder-query-string",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Grupo-Cometa/builder-query-string.git",
-                "reference": "bd1b434b22b7762bf5518ac58086de8811bb8d77"
+                "reference": "c851760649336c60b9df707d5820994e67748bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Grupo-Cometa/builder-query-string/zipball/bd1b434b22b7762bf5518ac58086de8811bb8d77",
-                "reference": "bd1b434b22b7762bf5518ac58086de8811bb8d77",
+                "url": "https://api.github.com/repos/Grupo-Cometa/builder-query-string/zipball/c851760649336c60b9df707d5820994e67748bae",
+                "reference": "c851760649336c60b9df707d5820994e67748bae",
                 "shasum": ""
             },
             "require": {
                 "illuminate/database": "^9.43",
-                "php": "^8.1.13"
+                "php": ">=8.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Cometa\\Builder\\": "src/"
+                    "GrupoCometa\\Builder\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -199,14 +199,18 @@
             "authors": [
                 {
                     "name": "Pedro Henrique de Oliveira Souza",
-                    "email": "pedro.souza@viacometa.com.br"
+                    "email": "pedroh.olives@gmail.com"
+                },
+                {
+                    "name": "Geraldo Lucas Mota de Oliveira",
+                    "email": "lucasmota.dev@gmail.com"
                 }
             ],
             "support": {
                 "issues": "https://github.com/Grupo-Cometa/builder-query-string/issues",
-                "source": "https://github.com/Grupo-Cometa/builder-query-string/tree/v1.0.0"
+                "source": "https://github.com/Grupo-Cometa/builder-query-string/tree/v1.0.1"
             },
-            "time": "2022-12-07T19:39:46+00:00"
+            "time": "2022-12-09T20:45:42+00:00"
         },
         {
             "name": "illuminate/collections",
@@ -2903,7 +2907,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1.13"
+        "php": "^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

@@ -1,22 +1,27 @@
 {
-    "name": "grupo-cometa/includes-relationship",
+    "name": "grupo-cometa/includes-relationships",
     "description": "",
     "type": "library",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Pedro Henrique de Oliveira Souza",
-            "email": "pedro.souza@viacometa.com.br"
+            "email": "pedroh.olives@gmail.com"
+        },
+        {
+            "name": "Geraldo Lucas Mota de Oliveira",
+            "email": "lucasmota.dev@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Cometa\\Includes\\":"src/"
+            "GrupoCometa\\Includes\\":"src/"
         }
     },
     "require": {
-        "php": "^8.1.13",
+        "php": "^8.1",
         "illuminate/http": "^9.43",
-        "grupo-cometa/builder-query-string":"^1.0.0"
+        "illuminate/database": "^9.43",
+        "grupo-cometa/builder-query-string":"^1.0.1"
     }
 }
