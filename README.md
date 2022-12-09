@@ -4,7 +4,7 @@
 
 ```bash
 
-composer require grupo-cometa/includes-relationship
+composer require grupo-cometa/includes-relationships
 
 ```
 
