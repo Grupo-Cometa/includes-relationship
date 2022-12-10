@@ -2,12 +2,11 @@
 
 namespace GrupoCometa\Includes\Query;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class OrderBy 
 {
-    public function __construct(private Model $model, private Request $request)
+    public function __construct(private $model, private Request $request)
     {
         if (!$this->request->exists('orderBy')) {
             $this->model =  $this->model->orderBy('id');
