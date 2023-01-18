@@ -13,7 +13,13 @@ class Relationships
 
     public function __construct(private $model, private Request $request)
     {
+        $this->filterModel();
         $this->bootstrap();
+    }
+    
+    private function filterModel(){
+        $queryString = (new QueryString($this->model, $this->request->all()));
+        $this->model = $queryString->getBuilder();
     }
 
     private function bootstrap()
