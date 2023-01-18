@@ -3,6 +3,7 @@
 namespace GrupoCometa\Includes\Query;
 
 use Illuminate\Http\Request;
+use GrupoCometa\Builder\QueryString;
 
 class Relationships
 {
