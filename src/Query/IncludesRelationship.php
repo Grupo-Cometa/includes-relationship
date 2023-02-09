@@ -3,11 +3,13 @@
 namespace GrupoCometa\Includes\Query;
 
 use GrupoCometa\Builder\QueryString;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class IncludesRelationship 
+class IncludesRelationship
 {
-    public function __construct(private $model, private Request $request)
+    private $with;
+    public function __construct(private Builder $builder, private Request $request)
     {
         $function = gettype($this->request->includes) . 'BuildWith';
         $this->$function();
@@ -17,7 +19,7 @@ class IncludesRelationship
     private function with()
     {
         if (!$this->with) return;
-        $this->model = $this->model->with($this->with);
+        $this->builder = $this->builder->with($this->with);
     }
 
     private function  stringBuildWith()
@@ -25,8 +27,8 @@ class IncludesRelationship
         $relationships = explode(',', $this->request->includes);
         foreach ($relationships as $relation) {
 
-            $this->with[$relation] = fn ($query) => $query->orderBy('id');
-            $this->model = $this->model->whereHas($relation, $this->with[$relation]);
+            $this->with[$relation] = fn ($query) => $query->orderBy($this->builder->getModel()->getKeyOrderBy());
+            $this->builder = $this->builder->whereHas($relation, $this->with[$relation]);
         }
     }
 
@@ -45,16 +47,16 @@ class IncludesRelationship
         foreach ($relations as  $relation) {
 
             $this->with[$relation] =  function ($query) use ($paramns) {
-                if (gettype($paramns) == 'string') return $query->where('id', '<>', null);
+                if (gettype($paramns) == 'string') return $query->where($this->builder->getPrimaryKey(), '<>', null);
                 (new QueryString($query, $paramns))->getBuilder();
             };
 
-            $this->model = $this->model->whereHas($relation, $this->with[$relation]);
+            $this->builder = $this->builder->whereHas($relation, $this->with[$relation]);
         }
     }
 
-    public function getModel()
+    public function getBuilder()
     {
-        return $this->model;
+        return $this->builder;
     }
 }

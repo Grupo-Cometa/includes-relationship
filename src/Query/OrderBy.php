@@ -2,37 +2,39 @@
 
 namespace GrupoCometa\Includes\Query;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class OrderBy 
+class OrderBy
 {
-    public function __construct(private $model, private Request $request)
+    public function __construct(private Builder $builder, private Request $request)
     {
         if (!$this->request->exists('orderBy')) {
-            $this->model =  $this->model->orderBy('id');
+            $orderBy = $this->builder->getModel()->getKeyOrderBy();
+            $this->builder =  $this->builder->orderBy($orderBy);
             return;
         }
 
-        foreach ( $this->request->orderBy as $key => $order) {
+        foreach ($this->request->orderBy as $key => $order) {
             if (gettype($order) == 'string') {
                 $order = explode(',', $order);
                 $this->buildOrderBy($order, $key, $this);
                 continue;
             }
 
-           $this->buildOrderBy($order, $key);
+            $this->buildOrderBy($order, $key);
         }
     }
 
     private function buildOrderBy(array $orders, $type)
     {
         foreach ($orders as $order) {
-            $this->model =  $this->model->orderBy($order, $type);
+            $this->builder =  $this->builder->orderBy($order, $type);
         }
     }
 
-    public function getModel()
+    public function getBuilder(): Builder
     {
-        return $this->model;
+        return $this->builder;
     }
 }

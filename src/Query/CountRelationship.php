@@ -3,13 +3,15 @@
 namespace GrupoCometa\Includes\Query;
 
 use GrupoCometa\Builder\QueryString;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class CountRelationship {
+class CountRelationship
+{
 
     private array|string $count;
 
-    public function __construct(private $model, private Request $request)
+    public function __construct(private Builder $builder, private Request $request)
     {
         $function = gettype($this->request->count) . 'BuildWithCount';
         $this->$function();
@@ -27,17 +29,17 @@ class CountRelationship {
             };
         }
 
-        $this->model = $this->model->withCount($this->count);
+        $this->builder = $this->builder->withCount($this->count);
     }
 
     private function  stringBuildWithCount()
     {
         $this->count = explode(',', $this->request->count);
-        $this->model = $this->model->withCount($this->count);
+        $this->builder = $this->builder->withCount($this->count);
     }
 
-    public function getModel()
+    public function getBuilder()
     {
-        return $this->model;
+        return $this->builder;
     }
 }
