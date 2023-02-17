@@ -16,8 +16,9 @@ class Relationships
 
     private Builder $builder;
 
-    public function __construct(private InterfaceInclude & Model $model, private Request $request)
+    public function __construct(private Model|Builder $model, private Request $request)
     {
+        assert($model instanceof InterfaceInclude);
         $this->filterModel();
         $this->bootstrap();
     }
