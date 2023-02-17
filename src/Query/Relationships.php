@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use GrupoCometa\Builder\QueryString;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Relationships
 {
@@ -16,7 +19,7 @@ class Relationships
 
     private Builder $builder;
 
-    public function __construct(private Model|Builder $model, private Request $request)
+    public function __construct(private Model|Builder|HasMany|BelongsTo|HasOne $model, private Request $request)
     {
         assert($model instanceof InterfaceInclude);
         $this->filterModel();
