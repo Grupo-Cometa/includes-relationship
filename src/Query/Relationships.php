@@ -17,7 +17,7 @@ class Relationships
         'count' =>  CountRelationship::class
     ];
 
-    private Builder $builder;
+    private Builder|HasMany|BelongsTo|HasOne $builder;
 
     public function __construct(private Model|Builder|HasMany|BelongsTo|HasOne $model, private Request $request)
     {

@@ -4,10 +4,13 @@ namespace GrupoCometa\Includes\Query;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderBy
 {
-    public function __construct(private Builder $builder, private Request $request)
+    public function __construct(private Builder|HasMany|BelongsTo|HasOne $builder, private Request $request)
     {
         if (!$this->request->exists('orderBy')) {
             $orderBy = $this->builder->getModel()->getKeyOrderBy();
@@ -33,7 +36,7 @@ class OrderBy
         }
     }
 
-    public function getBuilder(): Builder
+    public function getBuilder(): Builder | HasMany | BelongsTo | HasOne
     {
         return $this->builder;
     }
