@@ -26,8 +26,8 @@ class IncludesRelationship
     {
         $relationships = explode(',', $this->request->includes);
         foreach ($relationships as $relation) {
-
-            $this->with[$relation] = fn ($query) => $query->orderBy($this->builder->getModel()->getKeyOrderBy());
+            $orderBy = $this->builder->getModel()->$relation()->getModel()->getKeyOrderBy();
+            $this->with[$relation] = fn ($query) => $query->orderBy($orderBy);
             $this->builder = $this->builder->whereHas($relation, $this->with[$relation]);
         }
     }
