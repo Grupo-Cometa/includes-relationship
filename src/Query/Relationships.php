@@ -14,7 +14,8 @@ class Relationships
 {
     private $builders = [
         'includes' => IncludesRelationship::class,
-        'count' =>  CountRelationship::class
+        'count' =>  CountRelationship::class,
+        'notIncludes' => NotIncludesRelationship::class
     ];
 
     private Builder|HasMany|BelongsTo|HasOne $builder;
