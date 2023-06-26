@@ -29,10 +29,21 @@ class IncludesRelationship
     {
         $relationships = explode(',', $this->request->includes);
         foreach ($relationships as $relation) {
-            $orderBy = $this->builder->getModel()->$relation()->getModel()->getKeyOrderBy();
+            $orderBy = $this->getKeyOrderBy($relation);
             $this->with[$relation] = fn ($query) => $query->orderBy($orderBy);
             $this->builder = $this->builder->whereHas($relation, $this->with[$relation]);
         }
+    }
+
+    private function getKeyOrderBy($relation)
+    {
+        $relations = explode('.', $relation);
+
+        $model = $this->builder->getModel();
+        foreach ($relations as $relationModel) {
+            $model =  $model->$relationModel()->getModel();
+        }
+        return $model->getKeyOrderBy();
     }
 
     private function arrayBuildWith()
