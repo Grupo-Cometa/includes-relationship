@@ -6,13 +6,14 @@ use GrupoCometa\Builder\QueryString;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class IncludesRelationship
 {
     private $with;
-    public function __construct(private Builder|HasMany|BelongsTo|HasOne $builder, private Request $request)
+    public function __construct(private Builder|HasMany|BelongsTo|HasOne|BelongsToMany $builder, private Request $request)
     {
         $function = gettype($this->request->includes) . 'BuildWith';
         $this->$function();
@@ -43,7 +44,7 @@ class IncludesRelationship
         foreach ($relations as $relationModel) {
             $model =  $model->$relationModel()->getModel();
         }
-        return $model->getKeyOrderBy();
+        return "$relationModel.{$model->getKeyOrderBy()}";
     }
 
     private function arrayBuildWith()
