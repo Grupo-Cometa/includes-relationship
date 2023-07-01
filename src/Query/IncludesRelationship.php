@@ -44,7 +44,7 @@ class IncludesRelationship
         foreach ($relations as $relationModel) {
             $model =  $model->$relationModel()->getModel();
         }
-        return $model->getKeyOrderBy();
+        return "{$model->getTable()}.{$model->getKeyOrderBy()}";
     }
 
     private function arrayBuildWith()
