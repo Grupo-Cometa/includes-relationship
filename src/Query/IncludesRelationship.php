@@ -32,7 +32,7 @@ class IncludesRelationship
         foreach ($relationships as $relation) {
             $orderBy = $this->getKeyOrderBy($relation);
             $this->with[$relation] = fn ($query) => $query->orderBy($orderBy);
-            $this->builder = $this->builder->whereHas($relation, $this->with[$relation]);
+            $this->builder = $this->builder->whereHas($relation);
         }
     }
 
