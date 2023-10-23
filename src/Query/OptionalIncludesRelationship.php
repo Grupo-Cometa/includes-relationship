@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class OptionalIncludesRelationship
 {
     private $with;
-    public function __construct(private Builder|HasMany|BelongsTo|HasOne $builder, private Request $request)
+    public function __construct(private Builder|HasMany|BelongsTo|HasOne|BelongsToMany  $builder, private Request $request)
     {
         $function = gettype($this->request->optionalIncludes) . 'BuildWith';
         $this->$function();

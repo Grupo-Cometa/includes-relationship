@@ -19,9 +19,9 @@ class Relationships
         'optionalIncludes' => OptionalIncludesRelationship::class
     ];
 
-    private Builder|HasMany|BelongsTo|HasOne $builder;
+    private Builder|HasMany|BelongsTo|HasOne|BelongsToMany  $builder;
 
-    public function __construct(private Model|Builder|HasMany|BelongsTo|HasOne $model, private Request $request)
+    public function __construct(private Model|Builder|HasMany|BelongsTo|HasOne|BelongsToMany  $model, private Request $request)
     {
         assert($model instanceof InterfaceInclude);
         $this->filterModel();

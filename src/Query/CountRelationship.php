@@ -15,7 +15,7 @@ class CountRelationship
 
     private array|string $count;
 
-    public function __construct(private Builder|HasMany|BelongsTo|HasOne|BelongsToMany  $builder, private Request $request)
+    public function __construct(private Builder|HasMany|BelongsTo|HasOne|BelongsToMany $builder, private Request $request)
     {
         $function = gettype($this->request->count) . 'BuildWithCount';
         $this->$function();
