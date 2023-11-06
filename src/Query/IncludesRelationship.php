@@ -62,7 +62,7 @@ class IncludesRelationship
         foreach ($relations as  $relation) {
 
             $this->with[$relation] =  function ($query) use ($paramns) {
-                if (gettype($paramns) == 'string') return $query->where($this->builder->getPrimaryKey(), '<>', null);
+                if (gettype($paramns) == 'string') return $query->where($this->builder->getModel()->getPrimaryKey(), '<>', null);
                 (new QueryString($query, $paramns))->getBuilder();
             };
 
