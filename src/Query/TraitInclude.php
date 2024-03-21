@@ -16,4 +16,9 @@ trait TraitInclude
     {
         return $this->primaryKey;
     }
+
+    public function caseSensitive(): bool
+    {
+        return true;
+    }
 }
