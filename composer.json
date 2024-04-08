@@ -22,6 +22,6 @@
         "php": ">=8.0",
         "illuminate/http": ">=8.83",
         "illuminate/database": ">=8.83",
-        "grupo-cometa/builder-query-string":"^2.0.0"
+        "grupo-cometa/builder-query-string":"^2.0.1"
     }
 }
